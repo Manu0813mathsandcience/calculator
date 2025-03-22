@@ -3,50 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Capicúas</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        input, button { font-size: 18px; padding: 10px; margin: 5px; }
-        #resultado { margin-top: 20px; font-size: 20px; font-weight: bold; }
-    </style>
+    <title>Calculadora Multifuncional</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Calculadora de Capicúas</h1>
-    <p>Ingresa un número y se sumará con su reverso hasta obtener un número capicúa.</p>
-    <input type="number" id="numero" placeholder="Escribe un número">
-    <button onclick="calcularCapicua()">Calcular</button>
-    <div id="resultado"></div>
+    <h1>Calculadora Multifuncional</h1>
 
-    <script>
-        function esCapicua(num) {
-            return num.toString() === num.toString().split('').reverse().join('');
-        }
+    <!-- Botones para cambiar de modo -->
+    <div class="modo-selector">
+        <button onclick="cambiarModo('normal')">Normal</button>
+        <button onclick="cambiarModo('cientifica')">Científica</button>
+        <button onclick="cambiarModo('conversion')">Conversión</button>
+        <button onclick="cambiarModo('geometria')">Geometría</button>
+        <button onclick="cambiarModo('capicua')">Capicúa</button>
+    </div>
 
-        function calcularCapicua() {
-            let num = parseInt(document.getElementById("numero").value);
-            if (isNaN(num) || num < 0) {
-                document.getElementById("resultado").innerHTML = "Por favor, ingresa un número válido.";
-                return;
-            }
+    <!-- Contenedor de la calculadora -->
+    <div id="calculadora">
+        <p>Selecciona un modo para empezar.</p>
+    </div>
 
-            let iteraciones = 0;
-            let historial = [];
-
-            while (!esCapicua(num) && iteraciones < 1000) { 
-                let reverso = parseInt(num.toString().split('').reverse().join(''));
-                let nuevoNum = num + reverso;
-                historial.push(`${num} + ${reverso} = ${nuevoNum}`);
-                num = nuevoNum;
-                iteraciones++;
-            }
-
-            let resultadoTexto = `<p>Capicúa encontrado: <strong>${num}</strong> en ${iteraciones} iteraciones.</p>`;
-            resultadoTexto += "<p>Historial de sumas:</p><ul>";
-            historial.forEach(paso => resultadoTexto += `<li>${paso}</li>`);
-            resultadoTexto += "</ul>";
-
-            document.getElementById("resultado").innerHTML = resultadoTexto;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
