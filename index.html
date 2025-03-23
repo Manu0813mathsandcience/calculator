@@ -4,7 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Multifuncional</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .modo-selector {
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #calculadora {
+            border: 1px solid #000;
+            padding: 20px;
+            min-height: 100px;
+            background: white;
+            display: inline-block;
+            width: 300px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Calculadora Multifuncional</h1>
@@ -23,97 +50,78 @@
         <p>Selecciona un modo para empezar.</p>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function cambiarModo(modo) {
+            let calculadora = document.getElementById("calculadora");
+
+            switch(modo) {
+                case 'normal':
+                    calculadora.innerHTML = `
+                        <h2>Calculadora Normal</h2>
+                        <input type="text" id="inputNormal" placeholder="Ingresa la operación">
+                        <button onclick="calcularNormal()">Calcular</button>
+                        <p id="resultadoNormal"></p>
+                    `;
+                    break;
+
+                case 'cientifica':
+                    calculadora.innerHTML = `
+                        <h2>Calculadora Científica</h2>
+                        <button onclick="mostrarCientifica()">Abrir Calculadora Científica</button>
+                    `;
+                    break;
+
+                case 'conversion':
+                    calculadora.innerHTML = `
+                        <h2>Conversión de Unidades</h2>
+                        <button onclick="mostrarConversion()">Abrir Conversor</button>
+                    `;
+                    break;
+
+                case 'geometria':
+                    calculadora.innerHTML = `
+                        <h2>Calculadora Geométrica</h2>
+                        <button onclick="mostrarGeometria()">Abrir Calculadora Geométrica</button>
+                    `;
+                    break;
+
+                case 'capicua':
+                    calculadora.innerHTML = `
+                        <h2>Calculadora Capicúa</h2>
+                        <input type="number" id="numCapicua" placeholder="Ingresa un número">
+                        <button onclick="calcularCapicua()">Verificar</button>
+                        <p id="resultadoCapicua"></p>
+                    `;
+                    break;
+            }
+        }
+
+        function calcularNormal() {
+            let input = document.getElementById("inputNormal").value;
+            try {
+                document.getElementById("resultadoNormal").innerText = "Resultado: " + eval(input);
+            } catch (error) {
+                document.getElementById("resultadoNormal").innerText = "Error en la operación.";
+            }
+        }
+
+        function calcularCapicua() {
+            let num = document.getElementById("numCapicua").value;
+            let reverso = num.split("").reverse().join("");
+            document.getElementById("resultadoCapicua").innerText = num == reverso ? "Es capicúa" : "No es capicúa";
+        }
+
+        function mostrarCientifica() {
+            alert("Aquí irá la calculadora científica.");
+        }
+
+        function mostrarConversion() {
+            alert("Aquí irá el conversor de unidades.");
+        }
+
+        function mostrarGeometria() {
+            alert("Aquí irá la calculadora de geometría.");
+        }
+    </script>
 </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                   
-body {    font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-.modo-selector {
-    margin-bottom: 20px;
-}
-
-button {
-    margin: 5px;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#calculadora {
-    border: 1px solid #000;
-    padding: 20px;
-    min-height: 100px;
-}
-function cambiarModo(modo) {
-    let calculadora = document.getElementById("calculadora");
-
-    switch(modo) {
-        case 'normal':
-            calculadora.innerHTML = `
-                <h2>Calculadora Normal</h2>
-                <input type="text" id="inputNormal" placeholder="Ingresa la operación">
-                <button onclick="calcularNormal()">Calcular</button>
-                <p id="resultadoNormal"></p>
-            `;
-            break;
-
-        case 'cientifica':
-            calculadora.innerHTML = `
-                <h2>Calculadora Científica</h2>
-                <button onclick="mostrarCientifica()">Abrir Calculadora Científica</button>
-            `;
-            break;
-
-        case 'conversion':
-            calculadora.innerHTML = `
-                <h2>Conversión de Unidades</h2>
-                <button onclick="mostrarConversion()">Abrir Conversor</button>
-            `;
-            break;
-
-        case 'geometria':
-            calculadora.innerHTML = `
-                <h2>Calculadora Geométrica</h2>
-                <button onclick="mostrarGeometria()">Abrir Calculadora Geométrica</button>
-            `;
-            break;
-
-        case 'capicua':
-            calculadora.innerHTML = `
-                <h2>Calculadora Capicúa</h2>
-                <input type="number" id="numCapicua" placeholder="Ingresa un número">
-                <button onclick="calcularCapicua()">Verificar</button>
-                <p id="resultadoCapicua"></p>
-            `;
-            break;
-    }
-}
-
-function calcularNormal() {
-    let input = document.getElementById("inputNormal").value;
-    try {
-        document.getElementById("resultadoNormal").innerText = "Resultado: " + eval(input);
-    } catch (error) {
-        document.getElementById("resultadoNormal").innerText = "Error en la operación.";
-    }
-}
-
-function calcularCapicua() {
-    let num = document.getElementById("numCapicua").value;
-    let reverso = num.split("").reverse().join("");
-    document.getElementById("resultadoCapicua").innerText = num == reverso ? "Es capicúa" : "No es capicúa";
-}
-
-function mostrarCientifica() {
-    alert("Aquí irá la calculadora científica.");
-}
-
-function mostrarConversion() {
-    alert("Aquí irá el conversor de unidades.");
-}
-
-function mostrarGeometria() {
-    alert("Aquí irá la calculadora de geometría.");
-}
+</html>
