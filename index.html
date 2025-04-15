@@ -1,156 +1,163 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Multifuncional</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Multifuncional</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 40px;
+      background-color: #f5f5f5;
+    }
 
-        h1 {
-            color: #333;
-        }
+    h1 {
+      color: #222;
+    }
 
-        .modo-selector button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
+    .modo-selector button {
+      margin: 6px;
+      padding: 10px 20px;
+      font-size: 15px;
+      cursor: pointer;
+    }
 
-        #calculadora {
-            margin-top: 20px;
-        }
+    #calculadora {
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-        input, select {
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
-        }
+    input, select {
+      margin: 10px;
+      padding: 8px;
+      font-size: 16px;
+    }
 
-        button {
-            cursor: pointer;
-        }
-    </style>
+    button {
+      font-size: 14px;
+    }
+
+    p {
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <h1>Calculadora Multifuncional</h1>
+  <h1>Calculadora Multifuncional</h1>
 
-    <!-- Botones para cambiar de modo -->
-    <div class="modo-selector">
-        <button onclick="cambiarModo('normal')">Normal</button>
-        <button onclick="cambiarModo('cientifica')">Científica</button>
-        <button onclick="cambiarModo('conversion')">Conversión</button>
-        <button onclick="cambiarModo('geometria')">Geometría</button>
-        <button onclick="cambiarModo('capicua')">Capicúa</button>
-    </div>
+  <div class="modo-selector">
+    <button onclick="cambiarModo('normal')">Normal</button>
+    <button onclick="cambiarModo('cientifica')">Científica</button>
+    <button onclick="cambiarModo('conversion')">Conversión</button>
+    <button onclick="cambiarModo('geometria')">Geometría</button>
+    <button onclick="cambiarModo('capicua')">Capicúa</button>
+  </div>
 
-    <!-- Contenedor de la calculadora -->
-    <div id="calculadora">
-        <p>Selecciona un modo para empezar.</p>
-    </div>
+  <div id="calculadora">
+    <p>Selecciona un modo para empezar.</p>
+  </div>
 
-    <script>
-        function cambiarModo(modo) {
-            const contenedor = document.getElementById("calculadora");
+  <script>
+    function cambiarModo(modo) {
+      const contenedor = document.getElementById("calculadora");
 
-            if (modo === "normal") {
-                contenedor.innerHTML = `
-                    <input type="text" id="pantalla" readonly><br>
-                    <button onclick="agregar('1')">1</button>
-                    <button onclick="agregar('2')">2</button>
-                    <button onclick="agregar('+')">+</button>
-                    <button onclick="agregar('-')">-</button>
-                    <button onclick="calcular()">=</button>
-                    <br><button onclick="limpiar()">C</button>
-                `;
-            } else if (modo === "capicua") {
-                contenedor.innerHTML = `
-                    <input type="text" id="numero">
-                    <button onclick="verificarCapicua()">Verificar</button>
-                    <p id="resultado"></p>
-                `;
-            } else if (modo === "cientifica") {
-                contenedor.innerHTML = `
-                    <input type="text" id="pantalla" readonly><br>
-                    <button onclick="agregar('Math.sin(')">sin</button>
-                    <button onclick="agregar('Math.cos(')">cos</button>
-                    <button onclick="agregar('Math.log(')">log</button>
-                    <button onclick="agregar('Math.sqrt(')">√</button>
-                    <button onclick="calcular()">=</button><br>
-                    <button onclick="limpiar()">C</button>
-                `;
-            } else if (modo === "conversion") {
-                contenedor.innerHTML = `
-                    <input type="number" id="valor">
-                    <select id="unidad">
-                        <option value="km-m">Kilómetros a Metros</option>
-                        <option value="m-km">Metros a Kilómetros</option>
-                        <option value="g-kg">Gramos a Kilogramos</option>
-                        <option value="kg-g">Kilogramos a Gramos</option>
-                    </select>
-                    <button onclick="convertir()">Convertir</button>
-                    <p id="resultado"></p>
-                `;
-            } else if (modo === "geometria") {
-                contenedor.innerHTML = `
-                    <label>Lado del cuadrado:</label><br>
-                    <input type="number" id="lado">
-                    <button onclick="calcularAreaCuadrado()">Área</button>
-                    <p id="resultado"></p>
-                `;
-            }
-        }
+      if (modo === "normal") {
+        contenedor.innerHTML = `
+          <input type="text" id="pantalla" readonly><br>
+          <button onclick="agregar('1')">1</button>
+          <button onclick="agregar('2')">2</button>
+          <button onclick="agregar('+')">+</button>
+          <button onclick="agregar('-')">-</button>
+          <button onclick="calcular()">=</button><br>
+          <button onclick="limpiar()">C</button>
+        `;
+      } else if (modo === "cientifica") {
+        contenedor.innerHTML = `
+          <input type="text" id="pantalla" readonly><br>
+          <button onclick="agregar('Math.sin(')">sin</button>
+          <button onclick="agregar('Math.cos(')">cos</button>
+          <button onclick="agregar('Math.log(')">log</button>
+          <button onclick="agregar('Math.sqrt(')">√</button>
+          <button onclick="agregar(')')">)</button>
+          <button onclick="calcular()">=</button><br>
+          <button onclick="limpiar()">C</button>
+        `;
+      } else if (modo === "conversion") {
+        contenedor.innerHTML = `
+          <input type="number" id="valor">
+          <select id="unidad">
+            <option value="km-m">Kilómetros a Metros</option>
+            <option value="m-km">Metros a Kilómetros</option>
+            <option value="g-kg">Gramos a Kilogramos</option>
+            <option value="kg-g">Kilogramos a Gramos</option>
+          </select>
+          <button onclick="convertir()">Convertir</button>
+          <p id="resultado"></p>
+        `;
+      } else if (modo === "geometria") {
+        contenedor.innerHTML = `
+          <label>Lado del cuadrado:</label><br>
+          <input type="number" id="lado">
+          <button onclick="calcularAreaCuadrado()">Calcular Área</button>
+          <p id="resultado"></p>
+        `;
+      } else if (modo === "capicua") {
+        contenedor.innerHTML = `
+          <input type="text" id="numero">
+          <button onclick="verificarCapicua()">Verificar</button>
+          <p id="resultado"></p>
+        `;
+      }
+    }
 
-        function agregar(valor) {
-            document.getElementById("pantalla").value += valor;
-        }
+    function agregar(valor) {
+      document.getElementById("pantalla").value += valor;
+    }
 
-        function calcular() {
-            try {
-                const resultado = eval(document.getElementById("pantalla").value);
-                document.getElementById("pantalla").value = resultado;
-            } catch {
-                document.getElementById("pantalla").value = "Error";
-            }
-        }
+    function calcular() {
+      try {
+        const resultado = eval(document.getElementById("pantalla").value);
+        document.getElementById("pantalla").value = resultado;
+      } catch {
+        document.getElementById("pantalla").value = "Error";
+      }
+    }
 
-        function limpiar() {
-            document.getElementById("pantalla").value = "";
-        }
+    function limpiar() {
+      document.getElementById("pantalla").value = "";
+    }
 
-        function verificarCapicua() {
-            const num = document.getElementById("numero").value;
-            const invertido = num.split("").reverse().join("");
-            document.getElementById("resultado").innerText = (num === invertido) ?
-                "Es capicúa" : "No es capicúa";
-        }
+    function verificarCapicua() {
+      const num = document.getElementById("numero").value;
+      const invertido = num.split("").reverse().join("");
+      document.getElementById("resultado").innerText = (num === invertido) ? "Es capicúa" : "No es capicúa";
+    }
 
-        function convertir() {
-            const valor = parseFloat(document.getElementById("valor").value);
-            const unidad = document.getElementById("unidad").value;
-            let resultado;
+    function convertir() {
+      const valor = parseFloat(document.getElementById("valor").value);
+      const unidad = document.getElementById("unidad").value;
+      let resultado;
 
-            switch (unidad) {
-                case "km-m": resultado = valor * 1000 + " metros"; break;
-                case "m-km": resultado = valor / 1000 + " km"; break;
-                case "g-kg": resultado = valor / 1000 + " kg"; break;
-                case "kg-g": resultado = valor * 1000 + " g"; break;
-                default: resultado = "Conversión no disponible";
-            }
+      switch (unidad) {
+        case "km-m": resultado = valor * 1000 + " metros"; break;
+        case "m-km": resultado = valor / 1000 + " km"; break;
+        case "g-kg": resultado = valor / 1000 + " kg"; break;
+        case "kg-g": resultado = valor * 1000 + " g"; break;
+        default: resultado = "Conversión no disponible";
+      }
 
-            document.getElementById("resultado").innerText = resultado;
-        }
+      document.getElementById("resultado").innerText = resultado;
+    }
 
-        function calcularAreaCuadrado() {
-            const lado = parseFloat(document.getElementById("lado").value);
-            const area = lado * lado;
-            document.getElementById("resultado").innerText = "Área: " + area;
-        }
-    </script>
+    function calcularAreaCuadrado() {
+      const lado = parseFloat(document.getElementById("lado").value);
+      const area = lado * lado;
+      document.getElementById("resultado").innerText = "Área: " + area;
+    }
+  </script>
 </body>
 </html>
